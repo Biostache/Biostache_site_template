@@ -11,7 +11,7 @@ export default function Header() {
           <Link href="/" aria-label="Return to homepage">
             <img
               className="h-full w-fit"
-              src="/logos/FyrreMagazineLogo-Black.svg"
+              src="/logos/B-BIOTECHNOLOGYNEWS.svg"
               alt="logo"
             />
           </Link>
@@ -24,7 +24,7 @@ export default function Header() {
             <svg
               aria-hidden="true"
               className="md:hidden"
-              width="25"
+              width="15"
               height="16"
               viewBox="0 0 25 16"
               fill="none"

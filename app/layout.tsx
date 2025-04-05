@@ -7,8 +7,8 @@ import PodcastContextProvider from "@/context/PodcastContext";
 import ArticleContextProvider from "@/context/ArticleContext";
 
 export const metadata: Metadata = {
-  title: "Fyrre Magazine",
-  description: "Art & Life",
+  title: "Biostache",
+  description: "Biotechnology News",
 };
 
 export default function RootLayout({
@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link
+        {/* <link
           rel="icon"
-          href="/logos/FyrreMagazineFavicon.svg"
+          href="/logos/Biostachelogo.svg"
           type="image/x-icon"
-        />
+        /> */}
       </head>
       <body>
         <ArticleContextProvider>
