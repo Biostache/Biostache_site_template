@@ -24,6 +24,7 @@ export default function LatestArticles() {
     return (
       <>
         <div className="flex flex-col-reverse sm:flex-col gap-6 md:gap-12 py-6 md:py-10 max-w-[95rem] w-full mx-auto">
+          {/* Latest (most recent) Article */}
           <article className="flex flex-col-reverse sm:flex-col gap-6 md:gap-12">
             <article className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
               <h2 className="text-subtitle">
@@ -31,31 +32,39 @@ export default function LatestArticles() {
                   {latestArticle.title}
                 </Link>
               </h2>
+
               <article className="flex flex-col justify-between gap-2">
                 <p>{latestArticle.description}</p>
                 <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
+                    {/* Replace data[0].author with latestArticle.author */}
                     <span className="flex flex-wrap">
                       <p className="font-semibold pr-2">Text</p>
-                      <p>{data[0].author}</p>
+                      <p>{latestArticle.author}</p>
                     </span>
+
+                    {/* Use the latestArticle's date and read value */}
                     <span className="flex flex-wrap">
                       <p className="font-semibold pr-2">Date</p>
-                      <time dateTime={data[0].articles[0].date}>
-                        {data[0].articles[0].date}
+                      <time dateTime={latestArticle.date}>
+                        {latestArticle.date}
                       </time>
                     </span>
+
                     <span className="flex flex-wrap">
                       <p className="font-semibold pr-2">Read</p>
-                      <p>{data[0].articles[0].read}</p>
+                      <p>{latestArticle.read}</p>
                     </span>
                   </div>
+
+                  {/* Replace label reference */}
                   <span className="px-3 py-2 border border-black rounded-full w-fit">
-                    <p className="uppercase">{data[0].articles[0].label}</p>
+                    <p className="uppercase">{latestArticle.label}</p>
                   </span>
                 </div>
               </article>
             </article>
+
             <div>
               <Image
                 className="w-full object-cover aspect-[9/6]"
@@ -69,12 +78,13 @@ export default function LatestArticles() {
           </article>
         </div>
 
+        {/* Render the "remaining" articles */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 xl:gap-24">
           <div className="lg:w-3/4">
             {remainingArticles.map((article, index) => (
               <article key={article.title}>
                 <article className="grid md:grid-cols-[0fr_1fr] gap-6 sm:gap-12">
-                  <Link href={`magazine/${article.slug}`} className="h-60 w-60">
+                  <Link href={`/magazine/${article.slug}`} className="h-60 w-60">
                     <Image
                       className="w-full h-full object-cover hover:scale-105 transition"
                       src={article.img}
@@ -90,14 +100,15 @@ export default function LatestArticles() {
                           {article.title}
                         </Link>
                       </h3>
-
                       <p>{article.description}</p>
                     </div>
+
                     <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
+                        {/* Each article's own author, date, etc. */}
                         <span className="flex flex-wrap">
                           <p className="font-semibold pr-2">Text</p>
-                          <p>{data[0].author}</p>
+                          <p>{article.author}</p>
                         </span>
                         <span className="flex flex-wrap">
                           <p className="font-semibold pr-2">Date</p>
@@ -108,18 +119,22 @@ export default function LatestArticles() {
                           <p>{article.read}</p>
                         </span>
                       </div>
+
                       <span className="px-3 py-2 border border-black rounded-full w-fit">
                         <p className="uppercase">{article.label}</p>
                       </span>
                     </div>
                   </article>
                 </article>
+
+                {/* A separator between articles */}
                 {index < remainingArticles.length - 1 && (
                   <Separator className="border border-black my-6" />
                 )}
               </article>
             ))}
           </div>
+
           <div className="lg:w-1/4">
             <Sidebar />
           </div>

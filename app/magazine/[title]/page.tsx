@@ -76,7 +76,7 @@ export default async function ArticleDetails({
           <div className="flex flex-col sm:flex-row md:items-center gap-2 sm:gap-6">
             <span className="flex flex-wrap">
               <p className="font-semibold pr-2">Text</p>
-              <p>{articleData.author}</p>
+              <p>{matchingArticle.author}</p>
             </span>
             <span className="flex flex-wrap">
               <p className="font-semibold pr-2">Date</p>
@@ -107,10 +107,10 @@ export default async function ArticleDetails({
             <div className="flex gap-4 items-center">
               <img
                 className="w-[5rem] h-[5rem]"
-                src={articleData.avatar}
-                alt={articleData.imgAlt}
+                src={matchingArticle.authorAvatar}
+                alt={matchingArticle.imgAlt}
               />
-              <p className="text-[2rem] font-semibold">{articleData.author}</p>
+              <p className="text-[2rem] font-semibold">{matchingArticle.author}</p>
             </div>
 
             <div className="flex flex-col gap-4 pt-8">
@@ -213,7 +213,7 @@ export default async function ArticleDetails({
                 <div className="flex flex-wrap gap-4">
                   <span className="flex">
                     <p className="font-semibold pr-2">Text</p>
-                    <p>{articleData.author}</p>
+                    <p>{matchingArticle.author}</p>
                   </span>
                   <span className="flex">
                     <p className="font-semibold pr-2">Duration</p>

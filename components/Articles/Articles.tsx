@@ -21,10 +21,6 @@ export default function Articles() {
       .filter((item) =>
         selectedLabel === "All" ? true : selectedLabel === item.label
       )
-      .map((item) => ({
-        ...item,
-        author: article.author,
-      }))
   );
 
   return (

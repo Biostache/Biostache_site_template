@@ -1,13 +1,15 @@
 import he from "he"; 
 export type ArticleType = {
   id: number;
-  author: string;
-  job: string;
-  city: string;
-  avatar: string;
-  imgAlt: string;
-  slug: string;
+  // author: string;
+  // job: string;
+  // city: string;
+  // avatar: string;
+  // imgAlt: string;
+  // slug: string;
   articles: Array<{
+    author: string;
+    authorAvatar: string;
     title: string;
     popular: boolean;
     popularity: number;
@@ -39,33 +41,38 @@ export async function getArticles(): Promise<ArticleType[]> {
 
     const posts = await response.json();
 
+
     const transformedArticles = posts.map((post: any) => {
+
       // Attempt to get the featured image from _embedded
       let featuredImageUrl = "/default-image.jpg"; // fallback
       if (
-        post._embedded &&
-        post._embedded["wp:featuredmedia"] &&
-        post._embedded["wp:featuredmedia"][0] &&
-        post._embedded["wp:featuredmedia"][0].source_url
+        post._embedded?.["wp:featuredmedia"]?.[0]?.source_url
       ) {
         featuredImageUrl = post._embedded["wp:featuredmedia"][0].source_url;
       }
 
+      // 2) Attempt to get the author name
+      const authorName =
+        post.authors[0].display_name || "Unknown Author";
+
+      const authorAvatar = post.authors[0].avatar_url?.url?? "/fallback.png"
       return {
-        title: stripHtml(he.decode(post.title?.rendered)) || "Untitled",
+        author: authorName, // <--- store author for THIS article
+        authorAvatar: authorAvatar,
+        title: stripHtml(he.decode(post.title?.rendered || "")) || "Untitled",
         popular: false,
         popularity: 0,
         description: stripHtml(he.decode(post.excerpt?.rendered || "")),
         date: new Date(post.date).toLocaleDateString(),
         read: "5 min",
         label: "Blog",
-        // Use the WP featured image if it exists, else your local fallback
         img: featuredImageUrl,
         imgAlt: "Featured image",
         slug: post.slug,
         content: [
           {
-            img: featuredImageUrl, // or store an array if needed
+            img: featuredImageUrl,
             summary: "",
             section1: "",
             quote: [],
@@ -75,17 +82,11 @@ export async function getArticles(): Promise<ArticleType[]> {
         ],
       };
     });
-
+    
     // Single “parent” object to preserve data[0].articles shape
     const result: ArticleType[] = [
       {
         id: 1,
-        author: "WordPress Author",
-        job: "Blogger",
-        city: "Your City",
-        avatar: "/some-avatar.jpg", // place a real fallback in /public
-        imgAlt: "Some avatar alt",
-        slug: "wordpress-group",
         articles: transformedArticles,
       },
     ];
