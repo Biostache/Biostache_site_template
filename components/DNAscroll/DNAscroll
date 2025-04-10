@@ -1,0 +1,37 @@
+// 'use client'
+
+// import { useEffect, useRef } from 'react'
+
+// export default function ScrollDNA() {
+//   const videoRef = useRef<HTMLVideoElement>(null)
+
+//   useEffect(() => {
+//     const vid = videoRef.current
+//     if (!vid) return
+
+//     vid.pause()
+
+//     const handleScroll = () => {
+//       if (vid) {
+//         vid.pause()
+//         vid.currentTime = window.pageYOffset / 400
+//       }
+//     }
+
+//     window.addEventListener('scroll', handleScroll)
+//     return () => window.removeEventListener('scroll', handleScroll)
+//   }, [])
+
+//   return (
+//     <div className="fixed top-0 left-0 h-screen w-[160px] z-[-1] overflow-hidden hidden lg:block">
+//       <video
+//         ref={videoRef}
+//         preload="auto"
+//         muted
+//         playsInline
+//         className="h-full w-auto object-cover"
+//         src="/videos/dna-rotate.mp4"
+//       />
+//     </div>
+//   )
+// }

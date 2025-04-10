@@ -28,6 +28,7 @@ export type ArticleType = {
       summary2: string;
       section2: string;
     }>;
+    contentHtml: string;
   }>;
 };
 
@@ -38,10 +39,10 @@ export async function getArticles(): Promise<ArticleType[]> {
     if (!response.ok) {
       throw new Error("Failed to fetch posts from WP");
     }
-
+    
     const posts = await response.json();
 
-
+    
     const transformedArticles = posts.map((post: any) => {
 
       // Attempt to get the featured image from _embedded
@@ -51,7 +52,9 @@ export async function getArticles(): Promise<ArticleType[]> {
       ) {
         featuredImageUrl = post._embedded["wp:featuredmedia"][0].source_url;
       }
-
+      
+          
+      const contentHtml = post.content?.rendered || "";
       // 2) Attempt to get the author name
       const authorName =
         post.authors[0].display_name || "Unknown Author";
@@ -70,6 +73,7 @@ export async function getArticles(): Promise<ArticleType[]> {
         img: featuredImageUrl,
         imgAlt: "Featured image",
         slug: post.slug,
+        contentHtml: post.content.rendered,
         content: [
           {
             img: featuredImageUrl,
@@ -79,6 +83,7 @@ export async function getArticles(): Promise<ArticleType[]> {
             summary2: "",
             section2: "",
           },
+          
         ],
       };
     });
