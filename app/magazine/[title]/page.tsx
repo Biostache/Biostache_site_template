@@ -24,7 +24,7 @@ export async function generateMetadata({
   );
 
   return {
-    title: `${matchingArticle?.title} | Fyrre Magazine`,
+    title: `${matchingArticle?.title} | Biostache`,
   };
 }
 

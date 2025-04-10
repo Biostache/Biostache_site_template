@@ -32,7 +32,7 @@ export type ArticleType = {
 };
 
 export async function getArticles(): Promise<ArticleType[]> {
-  const wpEndpoint = "https://biostache.com/wp-json/wp/v2/posts?_embed";
+  const wpEndpoint = "https://biostache.com/wp-json/wp/v2/posts?per_page=50&_embed";
   try {
     const response = await fetch(wpEndpoint);
     if (!response.ok) {

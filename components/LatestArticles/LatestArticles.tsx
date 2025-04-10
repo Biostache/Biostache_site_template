@@ -22,66 +22,59 @@ export default function LatestArticles() {
     const remainingArticles = allArticles.slice(1);
 
     return (
-      <>
-        <div className="flex flex-col-reverse sm:flex-col gap-6 md:gap-12 py-6 md:py-10 max-w-[95rem] w-full mx-auto">
-          {/* Latest (most recent) Article */}
-          <article className="flex flex-col-reverse sm:flex-col gap-6 md:gap-12">
-            <article className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-              <h2 className="text-subtitle">
-                <Link href={`/magazine/${latestArticle.slug}`}>
-                  {latestArticle.title}
-                </Link>
-              </h2>
+<>
+  <div className="flex flex-col gap-6 md:gap-12 py-6 md:py-10 max-w-[95rem] w-full mx-auto">
+  {/* TITLE FULL WIDTH */}
+  <h2 className="text-subtitle text-center md:text-left px-4 sm:px-6 md:px-0">
+    <Link href={`/magazine/${latestArticle.slug}`}>
+      {latestArticle.title}
+    </Link>
+  </h2>
 
-              <article className="flex flex-col justify-between gap-2">
-                <p>{latestArticle.description}</p>
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
-                    {/* Replace data[0].author with latestArticle.author */}
-                    <span className="flex flex-wrap">
-                      <p className="font-semibold pr-2">Text</p>
-                      <p>{latestArticle.author}</p>
-                    </span>
+  {/* IMAGE FULL WIDTH */}
+  <div>
+    <Image
+      className="w-full object-cover"
+      src={latestArticle.content[0].img}
+      alt={latestArticle.imgAlt}
+      width={1500}
+      height={1000}
+      priority
+    />
+  </div>
 
-                    {/* Use the latestArticle's date and read value */}
-                    <span className="flex flex-wrap">
-                      <p className="font-semibold pr-2">Date</p>
-                      <time dateTime={latestArticle.date}>
-                        {latestArticle.date}
-                      </time>
-                    </span>
+  {/* META & DESCRIPTION */}
+  <article className="flex flex-col gap-3 px-4 sm:px-6 md:px-0">
+    <p>{latestArticle.description}</p>
 
-                    <span className="flex flex-wrap">
-                      <p className="font-semibold pr-2">Read</p>
-                      <p>{latestArticle.read}</p>
-                    </span>
-                  </div>
+    <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+        <span className="flex flex-wrap">
+          <p className="font-semibold pr-2">Text</p>
+          <p>{latestArticle.author}</p>
+        </span>
+        <span className="flex flex-wrap">
+          <p className="font-semibold pr-2">Date</p>
+          <time dateTime={latestArticle.date}>{latestArticle.date}</time>
+        </span>
+        <span className="flex flex-wrap">
+          <p className="font-semibold pr-2">Read</p>
+          <p>{latestArticle.read}</p>
+        </span>
+      </div>
 
-                  {/* Replace label reference */}
-                  <span className="px-3 py-2 border border-black rounded-full w-fit">
-                    <p className="uppercase">{latestArticle.label}</p>
-                  </span>
-                </div>
-              </article>
-            </article>
+      <span className="px-3 py-2 border border-black rounded-full w-fit">
+        <p className="uppercase">{latestArticle.label}</p>
+      </span>
+    </div>
+  </article>
+</div>
 
-            <div>
-              <Image
-                className="w-full object-cover aspect-[9/6]"
-                src={latestArticle.content[0].img}
-                alt={latestArticle.imgAlt}
-                width={1488}
-                height={992}
-                priority
-              />
-            </div>
-          </article>
-        </div>
 
         {/* Render the "remaining" articles */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 xl:gap-24">
           <div className="lg:w-3/4">
-            {remainingArticles.map((article, index) => (
+            {remainingArticles.slice(0,10).map((article, index) => (
               <article key={article.title}>
                 <article className="grid md:grid-cols-[0fr_1fr] gap-6 sm:gap-12">
                   <Link href={`/magazine/${article.slug}`} className="h-60 w-60">

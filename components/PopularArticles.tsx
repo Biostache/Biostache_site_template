@@ -24,7 +24,7 @@ export default function PopularArticles() {
               </h3>
               <span className="flex gap-2">
                 <p className="font-semibold">Text</p>
-                <p>{data[0].author}</p>
+                <p>{article.author}</p>
               </span>
             </article>
           </div>

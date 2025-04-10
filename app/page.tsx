@@ -8,10 +8,11 @@ import NewsTicker from "@/components/NewsTicker/NewsTicker";
 import PageTitle from "@/components/PageTitle";
 import Subheading from "@/components/Subheading";
 import { Suspense } from "react";
+import { Heading } from "lucide-react";
 
 export const metadata = {
-  title: "Fyrre Magazine | Art & Life | Home",
-  description: "Articles, podcasts and news from the Berlin cultural scene",
+  title: "Biostache - Biotechnology News",
+  description: "Welcome to Australia's Premier Biotechnology News Website",
 };
 
 export default function Home() {
@@ -29,7 +30,8 @@ export default function Home() {
         <NewsTicker />
       </Suspense>
 
-      <LatestArticles />
+      <LatestArticles/>
+      
 
       <Subheading
         className="text-subheading"
