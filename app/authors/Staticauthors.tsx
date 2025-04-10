@@ -18,7 +18,7 @@ export interface AuthorData {
     {
       id: 1,
       name: "Harry Glaspole",
-      slug: "Harry-Glaspole",
+      slug: "harry-glaspole",
       job: "Editor",
       city: "Melbourne",
       avatar: "/images/authors/Harry-Glaspole.jpg",
@@ -32,7 +32,7 @@ export interface AuthorData {
     {
       id: 2,
       name: "Sam Ruba",
-      slug: "Sam-Ruba",
+      slug: "sam-ruba",
       job: "Editor",
       city: "Melbourne",
       avatar: "/images/authors/Sam-Ruba.jpg",
@@ -45,7 +45,7 @@ export interface AuthorData {
     {
       id: 3,
       name: "Ryan Wallace",
-      slug: "Ryan-Wallace",
+      slug: "ryan-wallace",
       job: "Editor",
       city: "Melbourne",
       avatar: "/images/authors/Ryan-Wallace.jpg",
@@ -59,7 +59,7 @@ export interface AuthorData {
     {
       id: 4,
       name: "Daniel Giannetti",
-      slug: "Daniel-Giannetti",
+      slug: "daniel-giannetti",
       job: "Editor",
       city: "Melbourne",
       avatar: "/images/authors/Daniel-Giannetti.jpg",
